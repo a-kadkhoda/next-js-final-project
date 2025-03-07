@@ -47,18 +47,16 @@ const Navbar: React.FC = () => {
               </li>
               <li>
                 <Link href={"/products"}>Products</Link>
-                <ul className="p-4">
+               {/*  <ul className="p-4">
                   <li>
                     <a>Submenu 1</a>
                   </li>
                   <li>
                     <a>Submenu 2</a>
                   </li>
-                </ul>
+                </ul> */}
               </li>
-              <li>
-                <Link href={"/about-us"}>About Us</Link>
-              </li>
+
             </ul>
           </div>
           <span className="btn btn-ghost text-xl">Black Snow</span>
@@ -78,9 +76,7 @@ const Navbar: React.FC = () => {
                 </ul>
               </details>
             </li>
-            <li>
-              <Link href={"/abouts-us"}>About Us</Link>
-            </li>
+
           </ul>
         </div>
         {name ? (

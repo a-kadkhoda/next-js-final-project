@@ -1,4 +1,5 @@
-import ToProductsButton from "./toProductsButton/ToProductsButton";
+import Link from "next/link";
+
 
 const Hero: React.FC = async () => {
   return (
@@ -20,7 +21,7 @@ const Hero: React.FC = async () => {
               et a id nisi.
             </p>
             
-            <ToProductsButton />
+            <Link href={"/products"} className="btn btn-primary">Products</Link>
           </div>
         </div>
       </div>
