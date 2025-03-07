@@ -2,12 +2,20 @@
 import { setName } from "@/redux/slicers/authSlice";
 import { RootState } from "@/redux/store";
 import Link from "next/link";
+import Router from "next/router";
 
 import { useDispatch, useSelector } from "react-redux";
 
 const Navbar: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const name = useSelector((state: RootState) => state.auth.name);
+  const logout = () => {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/logout`)
+      .then(() => {
+        Router.push("/");
+      })
+      .catch(() => {});
+  };
 
   return (
     <>
@@ -84,7 +92,14 @@ const Navbar: React.FC = () => {
                   <Link href={`/checkout`}>Checkout</Link>
                 </li>
                 <li>
-                <button onClick={()=> dispatch(setName(""))} className="btn btn-error">Sign Out</button>
+                  <button
+                    onClick={() => {
+                      dispatch(setName(""), logout());
+                    }}
+                    className="btn btn-error"
+                  >
+                    Sign Out
+                  </button>
                 </li>
               </ul>
             </details>

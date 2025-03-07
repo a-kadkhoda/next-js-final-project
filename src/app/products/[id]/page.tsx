@@ -6,21 +6,22 @@ import { Metadata } from "next";
 interface SingleProductProps {
   params: Promise<{ id: string }>;
 }
-export async function generateMetadata({ params }: SingleProductProps): Promise<Metadata> {
-    const  id  = (await params).id
+export async function generateMetadata({
+  params,
+}: SingleProductProps): Promise<Metadata> {
+  const id = (await params).id;
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products/${id}`,
-      { cache: "no-store" }
-    );
-    const data = await res.json();
-    const info: ProductInfo = data.data[0];
-  
-    return {
-      title: info.category || "Product Not Found",
-    };
-  }
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products/${id}`,
+    { cache: "no-store" }
+  );
+  const data = await res.json();
+  const info: ProductInfo = data.data[0];
 
+  return {
+    title: info.category || "Product Not Found",
+  };
+}
 
 const SingleProduct = async ({ params }: SingleProductProps) => {
   const { id } = await params;
@@ -32,13 +33,16 @@ const SingleProduct = async ({ params }: SingleProductProps) => {
   const data = await res.json();
   const info: ProductInfo = data.data[0];
 
-
   return (
     <>
       <div className="p-28 h-[calc(100%-56px)]">
         <div className="flex w-full h-full gap-8">
           <div className="w-1/2">
-            <img className="rounded-2xl shadow h-[400px]" src={info.image} alt={info.title} />
+            <img
+              className="rounded-2xl shadow h-[400px]"
+              src={info.image}
+              alt={info.title}
+            />
           </div>
           <div className="w-1/2 flex flex-col gap-8 justify-around ">
             <span className="text-4xl">Title : {info.title}</span>
